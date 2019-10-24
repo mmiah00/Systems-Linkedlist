@@ -19,11 +19,12 @@ struct node * insert_front (struct node * n, int x) {
 }
 
 struct node * free_list (struct node * n) {
-  struct node * start = n;
-  struct node * now = n;
-  while (now -> i != '\0') {
-    free (n -> next);
+  struct node * was = n;
+  struct node * now;
+  while (n -> i != '\0') {
+    int *x = malloc (sizeof (int));
+    free (n -> now);
     now = now -> next;
   }
-  return n;
+  return was; 
 }
