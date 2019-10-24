@@ -3,6 +3,6 @@ struct node {
   struct node *next;
 };
 
-void print)list (struct node * n);
-struct node * insert_front (struct node * n, int i);
-struct node * free_list (struct node * n); 
+void print_list (struct node * n);
+struct node * insert_front (struct node * n, int x);
+struct node * free_list (struct node * n);
