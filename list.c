@@ -34,5 +34,5 @@ struct node * remove (struct node * front, int data) {
   while (now -> i != data) {
     now = now -> next;
   }
-  return front; 
+  return front;
 }
