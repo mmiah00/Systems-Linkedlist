@@ -26,5 +26,13 @@ struct node * free_list (struct node * n) {
     free (n -> now);
     now = now -> next;
   }
-  return was; 
+  return was;
+}
+
+struct node * remove (struct node * front, int data) {
+  struct node * now = front;
+  while (now -> i != data) {
+    now = now -> next;
+  }
+  return front; 
 }
