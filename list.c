@@ -4,15 +4,15 @@
 void print_list (struct node * n) {
   printf ("[ ");
   struct node * now = n ;
-  while (now -> i != '\0') {
+  while (now -> next != NULL) {
     printf ("%d ", now->i);
     now = now->next;
   }
-  printf ("]");
+  printf ("]\n);
 }
 
 struct node * insert_front (struct node * n, int x) {
-  struct node * new;
+  struct node * new = calloc(sizeof (n));
   new->i = x;
   new->next = n;
   return new;
@@ -20,19 +20,21 @@ struct node * insert_front (struct node * n, int x) {
 
 struct node * free_list (struct node * n) {
   struct node * was = n;
-  struct node * now;
-  while (n -> i != '\0') {
-    int *x = malloc (sizeof (int));
-    free (n -> now);
+  while (now -> next != NULL) {
+    free (now);
     now = now -> next;
   }
+  free (n);
   return was;
 }
 
 struct node * remove (struct node * front, int data) {
   struct node * now = front;
-  while (now -> i != data) {
-    now = now -> next;
+  if (front -> value == data && start -> next == NULL) {
+    free (front);
   }
-  return front;
+  else {
+    remove (start -> next, (start -> next) -> i );
+  }
+  return now;
 }

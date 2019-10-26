@@ -6,3 +6,7 @@ main.o: main.c list.h
 
 list.o: list.c list.h
 	gcc -c list.c
+
+run:
+	./program
+	rm *.o
