@@ -22,6 +22,15 @@ struct node * insert_front (struct node * n, int x) {
 }
 
 struct node * free_list (struct node * n) {
+  struct node *now = n;
+  struct node *nxt;
+  while (nxt != NULL) {
+    nxt = now -> next;
+    free (now);
+    now = nxt;
+  }
+  return now;
+  /*
   struct node * was = n;
   struct node * now = n;
   while (now -> next != NULL) {
@@ -30,6 +39,7 @@ struct node * free_list (struct node * n) {
   }
   free (n);
   return was;
+  */
 }
 
 struct node * remove_node (struct node * front, int data) {
@@ -50,7 +60,7 @@ struct node * remove_node (struct node * front, int data) {
         free (nxt);
       }
       now = now -> next;
-      nxt = now -> next; 
+      nxt = now -> next;
     }
   }
   return front;
