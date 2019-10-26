@@ -4,10 +4,12 @@
 
 void print_list (struct node * n) {
   printf ("[ ");
-  struct node * now = n ;
-  while (now -> next != NULL) {
-    printf ("%d ", now->i);
-    now = now->next;
+  if (n != NULL) {
+    struct node * now = n ;
+    while (now -> next != NULL) {
+      printf ("%d ", now->i);
+      now = now->next;
+    }
   }
   printf ("]\n");
 }
@@ -31,12 +33,25 @@ struct node * free_list (struct node * n) {
 }
 
 struct node * remove_node (struct node * front, int data) {
-  struct node * now = front;
-  if (front -> i == data && front -> next == NULL) {
+  if (front == NULL) {
+    return NULL;
+  }
+  if (front -> i == data) { //if node you want to remove is the first node
+    struct node *second = front -> next;
     free (front);
+    return second;
   }
   else {
-    remove_node (front -> next, (front -> next) -> i );
+    struct node *now = front;
+    struct node *nxt = front -> next;
+    while (nxt -> next != NULL) {
+      if (nxt -> i == data) {
+        now -> next = nxt -> next;
+        free (nxt);
+      }
+      now = now -> next;
+      nxt = now -> next; 
+    }
   }
-  return now;
+  return front;
 }
