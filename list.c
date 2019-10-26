@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "list.h"
 
 void print_list (struct node * n) {
@@ -8,11 +9,11 @@ void print_list (struct node * n) {
     printf ("%d ", now->i);
     now = now->next;
   }
-  printf ("]\n);
+  printf ("]\n");
 }
 
 struct node * insert_front (struct node * n, int x) {
-  struct node * new = calloc(sizeof (n));
+  struct node * new = calloc(sizeof (n),1);
   new->i = x;
   new->next = n;
   return new;
@@ -20,6 +21,7 @@ struct node * insert_front (struct node * n, int x) {
 
 struct node * free_list (struct node * n) {
   struct node * was = n;
+  struct node * now = n;
   while (now -> next != NULL) {
     free (now);
     now = now -> next;
@@ -28,13 +30,13 @@ struct node * free_list (struct node * n) {
   return was;
 }
 
-struct node * remove (struct node * front, int data) {
+struct node * remove_node (struct node * front, int data) {
   struct node * now = front;
-  if (front -> value == data && start -> next == NULL) {
+  if (front -> i == data && front -> next == NULL) {
     free (front);
   }
   else {
-    remove (start -> next, (start -> next) -> i );
+    remove_node (front -> next, (front -> next) -> i );
   }
   return now;
 }
